@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
@@ -146,6 +147,37 @@ namespace CourseOOP.Models
             double angleSum = angleA + angleB + angleC + angleD;
             if (Math.Abs(360.0 - angleSum) >= 1e-8)
             {
+                return false;
+            }
+            return true;
+        }
+
+        public static Quadrangle Parse(string s)
+        {
+            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            {
+                throw new FormatException("String does not suit the format.");
+            }
+
+            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            List<Point> points = new();
+            foreach (Match point in mPoints)
+            {
+                points.Add(Point.Parse(point.Value));
+            }
+
+            return new Quadrangle(points[0], points[1], points[2], points[3]);
+        }
+
+        public static bool TryParse(string s, out Quadrangle quadrangle)
+        {
+            try
+            {
+                quadrangle = Quadrangle.Parse(s);
+            }
+            catch (Exception)
+            {
+                quadrangle = new();
                 return false;
             }
             return true;

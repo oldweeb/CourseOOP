@@ -88,12 +88,12 @@ namespace CourseOOP.Models
         }
         public new static RightTriangle Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d*\.?\d*,\d*\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {

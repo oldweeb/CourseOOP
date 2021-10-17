@@ -48,7 +48,7 @@ namespace CourseOOP.Models
 
         public static Hexagon Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\d*\.?\d*"))
+            if (!Regex.IsMatch(s, @"^\d+\.?\d*"))
             {
                 throw new FormatException("String does not suit the format.");
             }

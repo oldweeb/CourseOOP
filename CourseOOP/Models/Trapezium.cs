@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -56,6 +57,37 @@ namespace CourseOOP.Models
                    !(Vector.AngleBetween(bc, ad) <= 1e-8)) ||
                    (!(Vector.AngleBetween(ab, cd) <= 1e-8) &&
                     Vector.AngleBetween(bc, ad) <= 1e-8);
+        }
+
+        public new static Trapezium Parse(string s)
+        {
+            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            {
+                throw new FormatException("String does not suit the format.");
+            }
+
+            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            List<Point> points = new();
+            foreach (Match point in mPoints)
+            {
+                points.Add(Point.Parse(point.Value));
+            }
+
+            return new Trapezium(points[0], points[1], points[2], points[3]);
+        }
+        public static bool TryParse(string s, out Trapezium trapezium)
+        {
+            try
+            {
+                trapezium = Trapezium.Parse(s);
+            }
+            catch (Exception)
+            {
+                trapezium = new();
+                return false;
+            }
+
+            return true;
         }
     }
 }

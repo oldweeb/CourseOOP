@@ -78,13 +78,44 @@ namespace CourseOOP.Models
                 {
                     if (String.IsNullOrWhiteSpace(line))
                     {
-
+                        continue;
                     }
+
+                    line = line.Trim();
+                    string shapeType = line.Substring(0, line.IndexOf(' '));
+                    IShape shape;
+                    switch (shapeType)
+                    {
+                        case "Triangle":
+                            shape = Triangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        case "RightTriangle":
+                            shape = RightTriangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        case "IsoscelesTriangle":
+                            shape = IsoscelesTriangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        case "EquilateralTriangle":
+                            shape = EquilateralTriangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        case "Quadrangle":
+                            shape = Quadrangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        case "Rectangle":
+                            shape = Rectangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        case "Trapezium":
+                            shape = Rectangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        case "Hexagon":
+                            shape = Hexagon.Parse(line.Remove(0, shapeType.Length + 1));
+                            break;
+                        default:
+                            throw new TypeNotSupportedException("This type of shapes is not supported.");
+                    }
+                    _shapes.Add(shape);
                 }
             }
-
-            throw new NotImplementedException();
-
         }
 
         public void ReadJson(string json)

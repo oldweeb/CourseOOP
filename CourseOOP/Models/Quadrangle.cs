@@ -4,23 +4,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace CourseOOP.Models
 {
     public class Quadrangle : IShape
     {
-        protected Point _a;
-        protected Point _b;
-        protected Point _c;
-        protected Point _d;
-        public Point A => _a;
-        public Point B => _b;
-        public Point C => _c;
-        public Point D => _d;
+        protected Point _a = new(0, 0);
+        protected Point _b = new(0, 1);
+        protected Point _c = new(1, 1);
+        protected Point _d = new(1, 0);
+
+        public Point A
+        {
+            get => _a;
+            set => _a = value;
+        }
+
+        public Point B
+        {
+            get => _b;
+            set => _b = value;
+        }
+        public Point C
+        {
+            get => _c;
+            set => _c = value;
+        }
+
+        public Point D
+        {
+            get => _d;
+            set => _d = value;
+        }
+        [JsonIgnore]
         public double AB => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
+        [JsonIgnore]
         public double AD => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
+        [JsonIgnore]
         public double BC => Math.Sqrt(Math.Pow(_c.X - _b.X, 2) + Math.Pow(_c.Y - _b.Y, 2));
+        [JsonIgnore]
         public double CD => Math.Sqrt(Math.Pow(_d.X - _c.X, 2) + Math.Pow(_d.Y - _c.Y, 2));
+        [JsonIgnore]
 
         public double AngleA
         {
@@ -28,39 +53,44 @@ namespace CourseOOP.Models
             {
                 Vector ab = new(_b.X - _a.X, _b.Y - _a.Y);
                 Vector ad = new(_d.X - _a.X, _d.Y - _a.Y);
-                return Vector.AngleBetween(ab, ad);
+                return Math.Abs(Vector.AngleBetween(ab, ad));
             }
         }
-
+        [JsonIgnore]
         public double AngleB
         {
             get
             {
                 Vector ba = new(_a.X - _b.X, _a.Y - _b.Y);
                 Vector bc = new(_c.X - _b.X, _c.Y - _b.Y);
-                return Vector.AngleBetween(ba, bc);
+                return Math.Abs(Vector.AngleBetween(ba, bc));
             }
         }
+        [JsonIgnore]
         public double AngleC
         {
             get
             {
                 Vector cb = new(_b.X - _c.X, _b.Y - _c.Y);
                 Vector cd = new(_d.X - _c.X, _d.Y - _c.Y);
-                return Vector.AngleBetween(cb, cd);
+                return Math.Abs(Vector.AngleBetween(cb, cd));
             }
         }
+        [JsonIgnore]
         public double AngleD
         {
             get
             {
                 Vector da = new(_a.X - _d.X, _a.Y - _d.Y);
                 Vector dc = new(_c.X - _d.X, _c.Y - _d.Y);
-                return Vector.AngleBetween(da, dc);
+                return Math.Abs(Vector.AngleBetween(da, dc));
             }
         }
+        [JsonIgnore]
         public (Point, Point) AC => (A, C);
+        [JsonIgnore]
         public (Point, Point) BD => (B, D);
+        [JsonProperty("Type")] public string ShapeType => this.GetType().Name;
 
         public Quadrangle()
         {
@@ -94,7 +124,7 @@ namespace CourseOOP.Models
             double alpha = Vector.AngleBetween(acVector, bdVector);
             alpha = alpha > 90.0 ? 180.0 - alpha : alpha;
             double area = ac * bd * Math.Sin(alpha) / 2;
-            throw new NotImplementedException();
+            return area;
         }
 
         public virtual double GetPerimeter() => AB + AD + BC + CD;
@@ -103,16 +133,16 @@ namespace CourseOOP.Models
         {
             Vector ab = new(b.X - a.X, b.Y - a.Y);
             Vector ad = new(d.X - a.X, d.Y - a.Y);
-            double angleA = Vector.AngleBetween(ab, ad);
+            double angleA = Math.Abs(Vector.AngleBetween(ab, ad));
             ab.Negate(); // got ba vector
             Vector bc = new(c.X - b.X, c.Y - b.Y);
-            double angleB = Vector.AngleBetween(ab, bc);
+            double angleB = Math.Abs(Vector.AngleBetween(ab, bc));
             bc.Negate(); // got cb vector
             Vector cd = new(d.X - c.X, d.Y - c.Y);
-            double angleC = Vector.AngleBetween(bc, cd);
+            double angleC = Math.Abs(Vector.AngleBetween(bc, cd));
             cd.Negate(); // got dc vector
             ad.Negate(); // got da vector
-            double angleD = Vector.AngleBetween(cd, ad);
+            double angleD = Math.Abs(Vector.AngleBetween(cd, ad));
             double angleSum = angleA + angleB + angleC + angleD;
             if (Math.Abs(360.0 - angleSum) >= 1e-8)
             {

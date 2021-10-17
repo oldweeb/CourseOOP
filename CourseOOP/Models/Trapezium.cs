@@ -52,8 +52,10 @@ namespace CourseOOP.Models
             Vector bc = new(quadrangle.C.X - quadrangle.B.X, quadrangle.C.Y - quadrangle.B.Y);
             Vector cd = new(quadrangle.D.X - quadrangle.C.X, quadrangle.D.Y - quadrangle.C.Y);
             Vector ad = new(quadrangle.D.X - quadrangle.A.X, quadrangle.D.Y - quadrangle.A.Y);
-            return Vector.AngleBetween(ab, cd) <= 1e-8 ||
-                   Vector.AngleBetween(bc, ad) <= 1e-8;
+            return (Vector.AngleBetween(ab, cd) <= 1e-8 &&
+                   !(Vector.AngleBetween(bc, ad) <= 1e-8)) ||
+                   (!(Vector.AngleBetween(ab, cd) <= 1e-8) &&
+                    Vector.AngleBetween(bc, ad) <= 1e-8);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace CourseOOP.Models
 {
@@ -24,6 +25,7 @@ namespace CourseOOP.Models
                 _sideLength = value;
             }
         }
+        [JsonProperty("Type")] public string ShapeType => this.GetType().Name;
 
         public Hexagon()
         {

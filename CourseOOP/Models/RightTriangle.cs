@@ -24,7 +24,7 @@ namespace CourseOOP.Models
         {
             get
             {
-                var legs = new List<double>() {AB, BC, AC};
+                List<double> legs = new() { AB, BC, AC };
                 _ = legs.Remove(Hypotenuse);
                 return (legs[0], legs[1]);
             }

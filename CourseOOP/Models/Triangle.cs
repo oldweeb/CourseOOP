@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace CourseOOP.Models
 {
@@ -12,21 +13,41 @@ namespace CourseOOP.Models
         protected Point _a;
         protected Point _b;
         protected Point _c;
-        public Point A => _a;
-        public Point B => _b;
-        public Point C => _c;
+
+        public Point A
+        {
+            get => _a;
+            set => _a = value;
+        }
+
+        public Point B
+        {
+            get => _b;
+            set => _b = value;
+        }
+
+        public Point C
+        {
+            get => _c;
+            set => _c = value;
+        }
+        [JsonIgnore]
         public double AB => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
+        [JsonIgnore]
         public double AC => Math.Sqrt(Math.Pow(_c.X - _a.X, 2) + Math.Pow(_c.Y - _a.Y, 2));
+        [JsonIgnore]
         public double BC => Math.Sqrt(Math.Pow(_c.X - _b.X, 2) + Math.Pow(_c.Y - _b.Y, 2));
+        [JsonIgnore]
         public double AngleA
         {
             get
             {
                 Vector ab = new(_b.X - _a.X, _b.Y - _a.Y);
                 Vector ac = new(_c.X - _a.X, _c.Y - _a.Y);
-                return Vector.AngleBetween(ab, ac);
+                return Math.Abs(Vector.AngleBetween(ab, ac));
             }
         }
+        [JsonIgnore]
 
         public double AngleB
         {
@@ -34,24 +55,26 @@ namespace CourseOOP.Models
             {
                 Vector ba = new(_a.X - _b.X, _a.Y - _b.Y);
                 Vector bc = new(_c.X - _b.X, _c.Y - _b.Y);
-                return Vector.AngleBetween(ba, bc);
+                return Math.Abs(Vector.AngleBetween(ba, bc));
             }
         }
+        [JsonIgnore]
         public double AngleC
         {
             get
             {
                 Vector cb = new(_b.X - _c.X, _b.Y - _c.Y);
                 Vector ca = new(_a.X - _c.X, _a.Y - _c.Y);
-                return Vector.AngleBetween(cb, ca);
+                return Math.Abs(Vector.AngleBetween(cb, ca));
             }
         }
 
+        [JsonProperty("Type")] public string ShapeType => this.GetType().Name;
         public Triangle()
         {
             _a = new Point(0, 0);
             _b = new Point(1, 1);
-            _c = new Point(4, 4);
+            _c = new Point(1, 0);
         }
         public Triangle(Point a, Point b, Point c)
         {

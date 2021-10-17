@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CourseOOP.Models;
+using Newtonsoft.Json;
 
 namespace CourseOOP.Views
 {
@@ -23,6 +26,7 @@ namespace CourseOOP.Views
         public MainWindow()
         {
             InitializeComponent();
+            _ = new ShapeHandler(@"D:\Workspace\CourseOOP\CourseOOP\Data\shapes.json");
         }
     }
 }

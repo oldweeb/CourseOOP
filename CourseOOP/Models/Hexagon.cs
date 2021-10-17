@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
@@ -44,5 +45,30 @@ namespace CourseOOP.Models
         public double GetArea() => 3 * Math.Sqrt(3) * _sideLength * _sideLength / 2;
 
         public double GetPerimeter() => _sideLength * 6;
+
+        public static Hexagon Parse(string s)
+        {
+            if (!Regex.IsMatch(s, @"^\d*\.?\d*"))
+            {
+                throw new FormatException("String does not suit the format.");
+            }
+
+            return new Hexagon(Double.Parse(s));
+        }
+
+        public static bool TryParse(string s, out Hexagon hexagon)
+        {
+            try
+            {
+                hexagon = Hexagon.Parse(s);
+            }
+            catch (FormatException)
+            {
+                hexagon = new Hexagon();
+                return false;
+            }
+
+            return true;
+        }
     }
 }

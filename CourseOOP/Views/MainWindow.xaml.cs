@@ -26,7 +26,9 @@ namespace CourseOOP.Views
         public MainWindow()
         {
             InitializeComponent();
-            _ = new ShapeHandler(@"D:\Workspace\CourseOOP\CourseOOP\Data\shapes.json");
+            //Triangle tr = Triangle.Parse("(0,0) (1,0) (0,1)");
+            Hexagon hexagon = Hexagon.Parse("4");
+            //_ = new ShapeHandler(@"D:\Workspace\CourseOOP\CourseOOP\Data\shapes.json");
         }
     }
 }

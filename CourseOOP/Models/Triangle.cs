@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
@@ -103,6 +104,37 @@ namespace CourseOOP.Models
             double ac = Math.Sqrt(Math.Pow(c.X - a.X, 2) + Math.Pow(c.Y - a.Y, 2));
             double bc = Math.Sqrt(Math.Pow(c.X - b.X, 2) + Math.Pow(c.Y - b.Y, 2));
             return ab + ac > bc && ab + bc > ac && ac + bc > ab;
+        }
+
+        public static Triangle Parse(string s)
+        {
+            if (!Regex.IsMatch(s, @"^\(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\)"))
+            {
+                throw new FormatException("String does not suit the format.");
+            }
+
+            MatchCollection mPoints = Regex.Matches(s, @"\d*\.?\d*,\d*\.?\d*");
+            List<Point> points = new();
+            foreach (Match point in mPoints)
+            {
+                points.Add(Point.Parse(point.Value));
+            }
+            return new Triangle(points[0], points[1], points[2]);
+        }
+
+        public static bool TryParse(string s, out Triangle triangle)
+        {
+            try
+            {
+                triangle = Triangle.Parse(s);
+            }
+            catch (FormatException)
+            {
+                triangle = new Triangle();
+                return false;
+            }
+
+            return true;
         }
     }
 }

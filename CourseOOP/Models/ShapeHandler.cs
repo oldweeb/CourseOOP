@@ -71,16 +71,23 @@ namespace CourseOOP.Models
                 ReadJson(file);
                 return;
             }
-            /*string[] lines = null;
             using (StreamReader reader = new(filePath))
             {
-                lines = reader.ReadToEnd().Split("\n", StringSplitOptions.RemoveEmptyEntries);
-            }*/
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (String.IsNullOrWhiteSpace(line))
+                    {
+
+                    }
+                }
+            }
+
             throw new NotImplementedException();
 
         }
 
-        private void ReadJson(string json)
+        public void ReadJson(string json)
         {
             JObject jObject = JObject.Parse(json);
             JToken shapesJToken = jObject["Shapes"] ?? throw new FormatException("Json file must contain attribute \"Shapes\"");

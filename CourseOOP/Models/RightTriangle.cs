@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -84,6 +85,41 @@ namespace CourseOOP.Models
                 legs.Item2 = bc;
             }
             return Math.Abs(Math.Pow(hypotenuse, 2) - Math.Pow(legs.Item1, 2) - Math.Pow(legs.Item2, 2)) >= 1e-8;
+        }
+        public new static RightTriangle Parse(string s)
+        {
+            if (!Regex.IsMatch(s, @"^\(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\)"))
+            {
+                throw new FormatException("String does not suit the format.");
+            }
+
+            MatchCollection mPoints = Regex.Matches(s, @"\d*\.?\d*,\d*\.?\d*");
+            List<Point> points = new();
+            foreach (Match point in mPoints)
+            {
+                points.Add(Point.Parse(point.Value));
+            }
+            return new RightTriangle(points[0], points[1], points[2]);
+        }
+
+        public static bool TryParse(string s, out RightTriangle triangle)
+        {
+            try
+            {
+                triangle = RightTriangle.Parse(s);
+            }
+            catch (FormatException)
+            {
+                triangle = new RightTriangle();
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                triangle = new RightTriangle();
+                return false;
+            }
+
+            return true;
         }
     }
 }

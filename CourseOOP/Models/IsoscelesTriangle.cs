@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -73,6 +74,41 @@ namespace CourseOOP.Models
             return Math.Abs(ab - bc) >= 1e-8 ||
                    Math.Abs(ab - ac) >= 1e-8 ||
                    Math.Abs(ac - bc) >= 1e-8;
+        }
+        public new static IsoscelesTriangle Parse(string s)
+        {
+            if (!Regex.IsMatch(s, @"^\(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\) \(\d*\.?\d*,\d*\.?\d*\)"))
+            {
+                throw new FormatException("String does not suit the format.");
+            }
+
+            MatchCollection mPoints = Regex.Matches(s, @"\d*\.?\d*,\d*\.?\d*");
+            List<Point> points = new();
+            foreach (Match point in mPoints)
+            {
+                points.Add(Point.Parse(point.Value));
+            }
+            return new IsoscelesTriangle(points[0], points[1], points[2]);
+        }
+
+        public static bool TryParse(string s, out IsoscelesTriangle triangle)
+        {
+            try
+            {
+                triangle = IsoscelesTriangle.Parse(s);
+            }
+            catch (FormatException)
+            {
+                triangle = new IsoscelesTriangle();
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                triangle = new IsoscelesTriangle();
+                return false;
+            }
+
+            return true;
         }
     }
 }

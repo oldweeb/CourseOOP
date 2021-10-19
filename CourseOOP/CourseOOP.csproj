@@ -7,7 +7,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\add-button.png" />
+    <None Remove="Assets\close-default.png" />
+    <None Remove="Assets\close-mouseover.png" />
+    <None Remove="Assets\delete.png" />
+    <None Remove="Assets\edit.png" />
+    <None Remove="Assets\history.png" />
+    <None Remove="Assets\icon.ico" />
+    <None Remove="Assets\read.png" />
+    <None Remove="Assets\toggle-button-mouseover.png" />
+    <None Remove="Assets\toggle-button.png" />
+    <None Remove="Assets\write.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\add-button.png" />
+    <Resource Include="Assets\close-default.png" />
+    <Resource Include="Assets\close-mouseover.png" />
+    <Resource Include="Assets\delete.png" />
+    <Resource Include="Assets\edit.png" />
+    <Resource Include="Assets\history.png" />
+    <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\read.png" />
+    <Resource Include="Assets\toggle-button-mouseover.png" />
+    <Resource Include="Assets\toggle-button.png" />
+    <Resource Include="Assets\write.png" />
   </ItemGroup>
 
 </Project>

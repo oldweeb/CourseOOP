@@ -26,9 +26,50 @@ namespace CourseOOP.Views
         public MainWindow()
         {
             InitializeComponent();
-            //Triangle tr = Triangle.Parse("(,) (1,0) (0,1)");
-            //Hexagon hexagon = Hexagon.Parse("4");
-            _ = new ShapeHandler(@"D:\Workspace\CourseOOP\CourseOOP\Data\figures.txt");
+        }
+
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Set tooltip visibility
+
+            if (TgBtn.IsChecked == true)
+            {
+                ttRead.Visibility = Visibility.Collapsed;
+                ttWrite.Visibility = Visibility.Collapsed;
+                ttAdd.Visibility = Visibility.Collapsed;
+                ttEdit.Visibility = Visibility.Collapsed;
+                ttRemove.Visibility = Visibility.Collapsed;
+                ttShow.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ttRead.Visibility = Visibility.Visible;
+                ttWrite.Visibility = Visibility.Visible;
+                ttAdd.Visibility = Visibility.Visible;
+                ttEdit.Visibility = Visibility.Visible;
+                ttRemove.Visibility = Visibility.Visible;
+                ttShow.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TgBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GradientBG.Opacity = 1;
+        }
+
+        private void TgBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            GradientBG.Opacity = 0.3;
+        }
+
+        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TgBtn.IsChecked = false;
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

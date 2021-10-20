@@ -12,35 +12,35 @@ namespace CourseOOP.Models
 {
     public class ShapeHandler
     {
-        private List<IShape> _shapes;
+        public List<IShape> Shapes { get; }
 
         public IShape this[int index]
         {
             get
             {
-                if (index < 0 || index >= _shapes.Count)
+                if (index < 0 || index >= Shapes.Count)
                 {
                     throw new IndexOutOfRangeException("Index is out of range.");
                 }
 
-                return _shapes[index];
+                return Shapes[index];
             }
         }
 
         public ShapeHandler()
         {
-            _shapes = new List<IShape>();
+            Shapes = new List<IShape>();
         }
 
         public ShapeHandler(string filePath)
         {
-            _shapes = new List<IShape>();
+            Shapes = new List<IShape>();
             ReadFromFile(filePath);
         }
 
         public ShapeHandler(ShapeHandler handler)
         {
-            _shapes = handler._shapes.ToList();
+            Shapes = handler.Shapes.ToList();
         }
 
         public void ReadFromFile(string filePath)
@@ -113,7 +113,7 @@ namespace CourseOOP.Models
                         default:
                             throw new TypeNotSupportedException("This type of shapes is not supported.");
                     }
-                    _shapes.Add(shape);
+                    Shapes.Add(shape);
                 }
             }
         }
@@ -215,7 +215,7 @@ namespace CourseOOP.Models
                         throw new TypeNotSupportedException("This type of shapes is not supported.");
                 }
 
-                _shapes.Add(shape ?? throw new ShapeParseException("Failed to parse shape from JSON."));
+                Shapes.Add(shape ?? throw new ShapeParseException("Failed to parse shape from JSON."));
 
             }
         }
@@ -226,7 +226,7 @@ namespace CourseOOP.Models
             {
                 throw new ArgumentNullException(nameof(shape), "Parameter is null.");
             }
-            _shapes.Add(shape);
+            Shapes.Add(shape);
         }
     }
 }

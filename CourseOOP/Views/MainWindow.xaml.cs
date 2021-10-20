@@ -26,6 +26,9 @@ namespace CourseOOP.Views
         public MainWindow()
         {
             InitializeComponent();
+            ShapeHandler handler = new(@"D:\Workspace\CourseOOP\CourseOOP\Data\shapes.json");
+            ShapesGrid.ItemsSource = handler.Shapes;
+            ShapesGrid.UpdateLayout();
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)

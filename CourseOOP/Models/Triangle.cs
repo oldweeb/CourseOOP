@@ -32,13 +32,9 @@ namespace CourseOOP.Models
             get => _c;
             set => _c = value;
         }
-        [JsonIgnore]
         public double AB => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
-        [JsonIgnore]
         public double AC => Math.Sqrt(Math.Pow(_c.X - _a.X, 2) + Math.Pow(_c.Y - _a.Y, 2));
-        [JsonIgnore]
         public double BC => Math.Sqrt(Math.Pow(_c.X - _b.X, 2) + Math.Pow(_c.Y - _b.Y, 2));
-        [JsonIgnore]
         public double AngleA
         {
             get
@@ -48,7 +44,6 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(ab, ac));
             }
         }
-        [JsonIgnore]
 
         public double AngleB
         {
@@ -59,7 +54,6 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(ba, bc));
             }
         }
-        [JsonIgnore]
         public double AngleC
         {
             get
@@ -98,6 +92,16 @@ namespace CourseOOP.Models
         }
 
         public virtual double GetPerimeter() => AB + AC + BC;
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            _ = sb.Append($"A: ({A}); B: ({B}); C: ({C})|");
+            _ = sb.Append($"∠A={AngleA:F2}°; ∠B={AngleB:F2}° ∠C={AngleC:F2}°|");
+            _ = sb.Append($"AB={AB:F2}; BC={BC:F2}; AC={AC:F2}|");
+            _ = sb.Append($"S={GetArea():F2}; P={GetPerimeter():F2}");
+            return sb.ToString();
+        }
+
         public static bool IsTriangle(Point a, Point b, Point c)
         {
             double ab = Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));

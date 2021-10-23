@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Shapes;
 using CourseOOP.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -228,5 +231,38 @@ namespace CourseOOP.Models
             }
             Shapes.Add(shape);
         }
+
+        public void WriteToFile(string filePath)
+        {
+            if (String.IsNullOrWhiteSpace(filePath))
+            {
+                throw new ArgumentException("String is null or whitespace.", nameof(filePath));
+            }
+
+            FileInfo fileInfo = new(filePath);
+            if (String.CompareOrdinal(fileInfo.Extension, ".txt") != 0 &&
+                String.CompareOrdinal(fileInfo.Extension, ".json") != 0)
+            {
+                throw new NotSupportedException("Only *.txt and *.json files are supported.");
+            }
+            if (String.CompareOrdinal(fileInfo.Extension, ".json") == 0)
+            {
+                using (StreamWriter writer = new(filePath))
+                {
+                    writer.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
+                }
+            }
+            else
+            {
+                using (StreamWriter writer = new(filePath))
+                {
+                    foreach (IShape shape in this)
+                    {
+                        writer.WriteLine(shape.ToString());
+                    }
+                }
+            }
+        }
+        public IEnumerator<IShape> GetEnumerator() => Shapes.GetEnumerator();
     }
 }

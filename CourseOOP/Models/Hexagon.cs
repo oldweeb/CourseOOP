@@ -46,6 +46,13 @@ namespace CourseOOP.Models
 
         public double GetPerimeter() => _sideLength * 6;
 
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            _ = sb.Append($"Side length: {SideLength:F2}| S={GetArea():F2}; P={GetPerimeter():F2}");
+            return sb.ToString();
+        }
+
         public static Hexagon Parse(string s)
         {
             if (!Regex.IsMatch(s, @"^\d+\.?\d*"))

@@ -38,15 +38,10 @@ namespace CourseOOP.Models
             get => _d;
             set => _d = value;
         }
-        [JsonIgnore]
         public double AB => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
-        [JsonIgnore]
         public double AD => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
-        [JsonIgnore]
         public double BC => Math.Sqrt(Math.Pow(_c.X - _b.X, 2) + Math.Pow(_c.Y - _b.Y, 2));
-        [JsonIgnore]
         public double CD => Math.Sqrt(Math.Pow(_d.X - _c.X, 2) + Math.Pow(_d.Y - _c.Y, 2));
-        [JsonIgnore]
 
         public double AngleA
         {
@@ -57,7 +52,6 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(ab, ad));
             }
         }
-        [JsonIgnore]
         public double AngleB
         {
             get
@@ -67,7 +61,6 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(ba, bc));
             }
         }
-        [JsonIgnore]
         public double AngleC
         {
             get
@@ -77,7 +70,6 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(cb, cd));
             }
         }
-        [JsonIgnore]
         public double AngleD
         {
             get
@@ -87,9 +79,7 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(da, dc));
             }
         }
-        [JsonIgnore]
         public (Point, Point) AC => (A, C);
-        [JsonIgnore]
         public (Point, Point) BD => (B, D);
         [JsonProperty("Type")] public string ShapeType => this.GetType().Name;
 
@@ -122,13 +112,23 @@ namespace CourseOOP.Models
             double bd = Math.Sqrt(Math.Pow(BD.Item2.X - BD.Item1.X, 2) + Math.Pow(BD.Item2.Y - BD.Item1.Y, 2));
             Vector acVector = new(_c.X - _a.X, _c.Y - _a.Y);
             Vector bdVector = new(_d.X - _b.X, _d.Y - _b.Y);
-            double alpha = Vector.AngleBetween(acVector, bdVector);
+            double alpha = Math.Abs(Vector.AngleBetween(acVector, bdVector));
             alpha = alpha > 90.0 ? 180.0 - alpha : alpha;
-            double area = ac * bd * Math.Sin(alpha) / 2;
+            double alphaInRadians = alpha * Math.PI / 180.0;
+            double area = ac * bd * Math.Sin(alphaInRadians) / 2;
             return area;
         }
 
         public virtual double GetPerimeter() => AB + AD + BC + CD;
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            _ = sb.Append($"A: ({A}); B: ({B}); C: ({C}) D:({D})|");
+            _ = sb.Append($"∠A={AngleA:F2}°; ∠B={AngleB:F2}° ∠C={AngleC:F2}° ∠D={AngleD:F2}°|");
+            _ = sb.Append($"AB={AB:F2}; BC={BC:F2}; AD={AD:F2}; CD={CD:F2}|");
+            _ = sb.Append($"S={GetArea():F2}; P={GetPerimeter():F2}");
+            return sb.ToString();
+        }
 
         public static bool IsQuadrangle(Point a, Point b, Point c, Point d)
         {
@@ -145,6 +145,10 @@ namespace CourseOOP.Models
             ad.Negate(); // got da vector
             double angleD = Math.Abs(Vector.AngleBetween(cd, ad));
             double angleSum = angleA + angleB + angleC + angleD;
+            if (angleA >= 180.0 || angleB >= 180.0 || angleC >= 180.0 || angleD >= 180.0)
+            {
+                return false;
+            }
             if (Math.Abs(360.0 - angleSum) >= 1e-8)
             {
                 return false;

@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         Title="ShapesApp"
         Height="600"
-        Width="800"
+        Width="1000"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Icon="../Assets/icon.ico">
@@ -58,6 +58,10 @@
             </Setter>
         </Style>
 
+        <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+
         <Style x:Key="TbStyle" TargetType="{x:Type ToggleButton}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -83,7 +87,7 @@
     <Grid>
         <Grid Background="Black">
             <!-- Gradient background -->
-            <Grid x:Name="BG" PreviewMouseLeftButtonDown="BG_PreviewMouseLeftButtonDown" ZIndex="-2">
+            <Grid x:Name="BG" PreviewMouseLeftButtonDown="BG_PreviewMouseLeftButtonDown" ZIndex="-4">
                 <Grid.Background>
                     <LinearGradientBrush SpreadMethod="Repeat" x:Name="GradientBG">
                         <GradientStop Color="#666699" Offset="0.0"></GradientStop>
@@ -111,7 +115,18 @@
                         <ImageBrush ImageSource="../Assets/close-default.png"></ImageBrush>
                     </Button.Background>
                 </Button>
-                <DataGrid x:Name="ShapesGrid" Grid.Column="2" Grid.Row="2" AutoGenerateColumns="True"></DataGrid>
+                <Grid ZIndex="-3" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                    <DataGrid x:Name="ShapesGrid" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserReorderColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False">
+                        <ScrollViewer.CanContentScroll>True</ScrollViewer.CanContentScroll>
+                        <ScrollViewer.HorizontalScrollBarVisibility>Visible</ScrollViewer.HorizontalScrollBarVisibility>
+                        <ScrollViewer.VerticalScrollBarVisibility>Auto</ScrollViewer.VerticalScrollBarVisibility>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Shape Type" Width="100" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}" Binding="{Binding Path=ShapeType}"/>
+                            <DataGridTextColumn Header="Information" Width="*" MaxWidth="99999" HeaderStyle="{StaticResource HeaderStyle}" Binding="{Binding Path=Information}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <Frame x:Name="EditingPagesFrame" NavigationUIVisibility="Hidden" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
             </Grid>
             <Grid x:Name="NavPnl" HorizontalAlignment="Left" Width="65" Background="#2E333A">
                 <StackPanel x:Name="StPnl">
@@ -155,7 +170,7 @@
                     <ListView x:Name="LV" Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <!-- Read from file -->
                         <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
-                            <StackPanel Orientation="Horizontal" Width="230">
+                            <StackPanel Orientation="Horizontal" Width="230" MouseDown="StackPanel_MouseDown">
                                 <Image Source="../Assets/read.png" Stretch="Fill" Margin="12,0,0,0"></Image>
                                 <TextBlock Text="Read from file" Margin="25,0,0,0" Style="{StaticResource fontStyle}"></TextBlock>
                             </StackPanel>
@@ -165,7 +180,7 @@
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
-                            <StackPanel Orientation="Horizontal" Width="230">
+                            <StackPanel Orientation="Horizontal" Width="230" MouseDown="StackPanel_MouseDown_1" >
                                 <Image Source="../Assets/write.png" Stretch="Fill" Margin="12,0,0,0"></Image>
                                 <TextBlock Text="Write to file" Margin="25,0,0,0" Style="{StaticResource fontStyle}"></TextBlock>
                             </StackPanel>
@@ -175,7 +190,7 @@
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
-                            <StackPanel Orientation="Horizontal" Width="230">
+                            <StackPanel Orientation="Horizontal" Width="230" MouseDown="StackPanel_MouseDown_2">
                                 <Image Source="../Assets/add-button.png" Stretch="Fill" Margin="12,0,0,0"></Image>
                                 <TextBlock Text="New Shape" Margin="25,0,0,0" Style="{StaticResource fontStyle}"></TextBlock>
                             </StackPanel>
@@ -185,7 +200,7 @@
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
-                            <StackPanel Orientation="Horizontal" Width="230">
+                            <StackPanel Orientation="Horizontal" Width="230" MouseDown="StackPanel_MouseDown_3">
                                 <Image Source="../Assets/edit.png" Stretch="Fill" Margin="12,0,0,0"></Image>
                                 <TextBlock Text="Edit Shape" Margin="25,0,0,0" Style="{StaticResource fontStyle}"></TextBlock>
                             </StackPanel>
@@ -195,7 +210,7 @@
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
-                            <StackPanel Orientation="Horizontal" Width="230">
+                            <StackPanel Orientation="Horizontal" Width="230" MouseDown="StackPanel_MouseDown_4">
                                 <Image Source="../Assets/delete.png" Stretch="Fill" Margin="12,0,0,0"></Image>
                                 <TextBlock Text="Remove Shape" Margin="25,0,0,0" Style="{StaticResource fontStyle}"></TextBlock>
                             </StackPanel>
@@ -205,13 +220,13 @@
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
-                            <StackPanel Orientation="Horizontal" Width="230">
+                            <StackPanel Orientation="Horizontal" Width="230" MouseDown="StackPanel_MouseDown_5" >
                                 <Image Source="../Assets/history.png" Stretch="Fill" Margin="12,0,0,0"></Image>
-                                <TextBlock Text="Show history" Margin="25,0,0,0" Style="{StaticResource fontStyle}"></TextBlock>
+                                <TextBlock Text="Save history" Margin="25,0,0,0" Style="{StaticResource fontStyle}"></TextBlock>
                             </StackPanel>
                             <!-- Tooltip -->
                             <ListViewItem.ToolTip>
-                                <ToolTip x:Name="ttShow" Content="Show history" Style="{StaticResource ttStyle}"/>
+                                <ToolTip x:Name="ttShow" Content="Save history" Style="{StaticResource ttStyle}"/>
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         <!-- Listview items style template -->

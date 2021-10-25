@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Shapes;
 using CourseOOP.Exceptions;
@@ -16,6 +17,7 @@ namespace CourseOOP.Models
     public class ShapeHandler
     {
         public List<IShape> Shapes { get; }
+        public Dictionary<IShape, StringBuilder> ShapesHistory { get; }
 
         public IShape this[int index]
         {
@@ -33,17 +35,20 @@ namespace CourseOOP.Models
         public ShapeHandler()
         {
             Shapes = new List<IShape>();
+            ShapesHistory = new Dictionary<IShape, StringBuilder>();
         }
 
         public ShapeHandler(string filePath)
         {
             Shapes = new List<IShape>();
+            ShapesHistory = new Dictionary<IShape, StringBuilder>();
             ReadFromFile(filePath);
         }
 
         public ShapeHandler(ShapeHandler handler)
         {
             Shapes = handler.Shapes.ToList();
+            ShapesHistory = handler.ShapesHistory.ToDictionary(entry => entry.Key, entry => entry.Value);
         }
 
         public void ReadFromFile(string filePath)
@@ -117,10 +122,28 @@ namespace CourseOOP.Models
                             throw new TypeNotSupportedException("This type of shapes is not supported.");
                     }
                     Shapes.Add(shape);
+                    if (!ShapesHistory.ContainsKey(shape))
+                    {
+                        ShapesHistory.Add(shape, new StringBuilder($"{DateTime.Now} - shape was created.\n"));
+                    }
+                    else
+                    {
+                        ShapesHistory[shape].AppendLine($"{DateTime.Now} - shape was created.");
+                    }
                 }
             }
         }
 
+        public void RemoveAt(int index)
+        {
+            if (index < 0 || index >= Shapes.Count)
+            {
+                throw new IndexOutOfRangeException("Index is out of range.");
+            }
+            IShape shape = Shapes.ElementAt(index);
+            Shapes.RemoveAt(index);
+            ShapesHistory[shape].AppendLine($"{DateTime.Now} - shape was removed.");
+        }
         public void ReadJson(string json)
         {
             JObject jObject = JObject.Parse(json);
@@ -219,7 +242,14 @@ namespace CourseOOP.Models
                 }
 
                 Shapes.Add(shape ?? throw new ShapeParseException("Failed to parse shape from JSON."));
-
+                if (!ShapesHistory.ContainsKey(shape))
+                {
+                    ShapesHistory.Add(shape, new StringBuilder($"{DateTime.Now} - shape was created.\n"));
+                }
+                else
+                {
+                    ShapesHistory[shape].AppendLine($"{DateTime.Now} - shape was created.");
+                }
             }
         }
 
@@ -230,8 +260,34 @@ namespace CourseOOP.Models
                 throw new ArgumentNullException(nameof(shape), "Parameter is null.");
             }
             Shapes.Add(shape);
+            if (!ShapesHistory.ContainsKey(shape))
+            {
+                ShapesHistory.Add(shape, new StringBuilder($"{DateTime.Now} - shape was created.\n"));
+            }
+            else
+            {
+                _ = ShapesHistory[shape].AppendLine($"{DateTime.Now} - shape was created.");
+            }
         }
 
+        public void UpdateShapeAt([DisallowNull] IShape shape, int index)
+        {
+            if (shape == null)
+            {
+                throw new ArgumentNullException(nameof(shape), "Argument is null.");
+            }
+
+            if (index < 0 || index >= Shapes.Count)
+            {
+                throw new IndexOutOfRangeException("Index is out of range.");
+            }
+
+            StringBuilder data = ShapesHistory[shape];
+            ShapesHistory.Remove(shape);
+            Shapes[index] = shape;
+            ShapesHistory.Add(shape, data);
+            _ = data.AppendLine($"{DateTime.Now} - shape was edited.");
+        }
         public void WriteToFile(string filePath)
         {
             if (String.IsNullOrWhiteSpace(filePath))
@@ -262,6 +318,28 @@ namespace CourseOOP.Models
                     }
                 }
             }
+        }
+
+        public void WriteShapesHistoryToFile(string filePath)
+        {
+            if (String.IsNullOrWhiteSpace(filePath))
+            {
+                throw new ArgumentException("String is null or whitespace.", nameof(filePath));
+            }
+
+            FileInfo fileInfo = new(filePath);
+            if (String.CompareOrdinal(fileInfo.Extension, ".txt") != 0)
+            {
+                throw new NotSupportedException("Only *.txt files are supported.");
+            }
+
+            using StreamWriter writer = new(filePath);
+            foreach ((IShape shape, StringBuilder history) in ShapesHistory)
+            {
+                writer.WriteLine($"Shape: {shape.ShapeType} Information: {shape}\n");
+                writer.WriteLine($"History: {history}\n");
+            }
+
         }
         public IEnumerator<IShape> GetEnumerator() => Shapes.GetEnumerator();
     }

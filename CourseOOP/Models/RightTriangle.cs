@@ -82,9 +82,10 @@ namespace CourseOOP.Models
             {
                 hypotenuse = bc;
                 legs.Item1 = ab;
-                legs.Item2 = bc;
+                legs.Item2 = ac;
             }
-            return Math.Abs(Math.Pow(hypotenuse, 2) - Math.Pow(legs.Item1, 2) - Math.Pow(legs.Item2, 2)) >= 1e-8;
+            
+            return Math.Abs(Math.Pow(hypotenuse, 2) - Math.Pow(legs.Item1, 2) - Math.Pow(legs.Item2, 2)) <= 1e-8;
         }
         public new static RightTriangle Parse(string s)
         {

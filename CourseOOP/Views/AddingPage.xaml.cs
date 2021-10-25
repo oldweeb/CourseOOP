@@ -85,7 +85,7 @@ namespace CourseOOP.Views
                             {
                                 if (!IsoscelesTriangle.IsIsoscelesTriangle(a, b, c))
                                 {
-                                    _ = MessageBox.Show(_parent, "This is not a isosceles triangle.", "Error.", MessageBoxButton.OK);
+                                    _ = MessageBox.Show(_parent, "This is not an isosceles triangle.", "Error.", MessageBoxButton.OK);
                                     return;
                                 }
 
@@ -95,7 +95,7 @@ namespace CourseOOP.Views
                             {
                                 if (!EquilateralTriangle.IsEquilateralTriangle(a, b, c))
                                 {
-                                    _ = MessageBox.Show(_parent, "This is not a equilateral triangle.", "Error.", MessageBoxButton.OK);
+                                    _ = MessageBox.Show(_parent, "This is not an equilateral triangle.", "Error.", MessageBoxButton.OK);
                                     return;
                                 }
 

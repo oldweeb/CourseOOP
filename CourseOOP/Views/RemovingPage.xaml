@@ -1,0 +1,80 @@
+﻿<Page x:Class="CourseOOP.Views.RemovingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseOOP.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="875"
+      Title="Remove Shape"
+      Height="450"
+      Width="875">
+    <Page.Resources>
+        <Style x:Key="labelFontStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+        <Style x:Key="comboBoxItemFontStyle" TargetType="ComboBoxItem">
+            <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+        <Style x:Key="buttonFontStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+        <Style x:Key="textBoxFontStyle" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#33ccff" Offset="0.0"></GradientStop>
+                <GradientStop Color="#ff99cc" Offset="1.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Content="Select Shape to remove:" Style="{StaticResource labelFontStyle}" Grid.Column="0" Margin="200, 15, 20,20"/>
+        <ComboBox Name="ShapeBox" Margin="200, 120, 200, 60" Grid.Column="0" Grid.ColumnSpan="2" />
+        <Button x:Name="RemoveBtn" Content="Remove" Margin="80, 170, 80, 10" Grid.Row="1" Style="{StaticResource buttonFontStyle}" Click="RemoveBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"></Setter>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#ccff99" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#000099" Offset="1.5"></GradientStop>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="CancelBtn" Content="Cancel" Margin="80, 170, 80, 10" Grid.Row="3" Grid.Column="1" Style="{StaticResource buttonFontStyle}" Click="CancelBtn_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"></Setter>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#cc6699" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#ff5050" Offset="1.5"></GradientStop>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Page>

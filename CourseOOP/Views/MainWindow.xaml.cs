@@ -108,6 +108,15 @@ namespace CourseOOP.Views
                 {
                     ShapeHandler.ReadFromFile(dialog.FileName);
                 }
+                catch (InvalidShapeException)
+                {
+                    _ = MessageBox.Show(
+                        this,
+                        "Failed to read some shape from the file you have chosen. Check your file and try again.",
+                        "Error.",
+                        MessageBoxButton.OK
+                    );
+                }
                 catch (TypeNotSupportedException)
                 {
                     _ = MessageBox.Show(
@@ -177,7 +186,12 @@ namespace CourseOOP.Views
         /// <param name="e"></param>
         private void StackPanel_MouseDown_3(object sender, MouseButtonEventArgs e)
         {
-
+            if (!ShapeHandler.Shapes.Any())
+            {
+                _ = MessageBox.Show(this, "Nothing to edit yet.", "Message.", MessageBoxButton.OK);
+                return;
+            }
+            EditingPagesFrame.Content = new EditingPage(this);
         }
         /// <summary>
         /// Removing shape from grid.
@@ -186,7 +200,13 @@ namespace CourseOOP.Views
         /// <param name="e"></param>
         private void StackPanel_MouseDown_4(object sender, MouseButtonEventArgs e)
         {
+            if (!ShapeHandler.Shapes.Any())
+            {
+                _ = MessageBox.Show(this, "Nothing to remove yet.", "Message.", MessageBoxButton.OK);
+                return;
+            }
 
+            EditingPagesFrame.Content = new RemovingPage(this);
         }
         /// <summary>
         /// Saving shapes' history.
@@ -195,7 +215,19 @@ namespace CourseOOP.Views
         /// <param name="e"></param>
         private void StackPanel_MouseDown_5(object sender, MouseButtonEventArgs e)
         {
-
+            if (!ShapeHandler.Shapes.Any())
+            {
+                _ = MessageBox.Show(this, "Nothing to save. Shapes list is empty.", "Message.", MessageBoxButton.OK);
+                return;
+            }
+            SaveFileDialog dialog = new()
+            {
+                Filter = "Text Files (*.txt)|*.txt"
+            };
+            if (dialog.ShowDialog() == true)
+            {
+                ShapeHandler.WriteShapesHistoryToFile(dialog.FileName);
+            }
         }
     }
 }

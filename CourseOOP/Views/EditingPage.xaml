@@ -1,4 +1,4 @@
-﻿<Page x:Class="CourseOOP.Views.AddingPage"
+﻿<Page x:Class="CourseOOP.Views.EditingPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:CourseOOP.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="875"
-      Title="Add"
       Height="450"
-      Width="875">
+      Width="875"
+      Title="Edit">
 
     <Page.Resources>
         <Style x:Key="labelFontStyle" TargetType="Label">
@@ -51,17 +51,8 @@
             <ColumnDefinition/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Label Content="Select Shape Type:" Style="{StaticResource labelFontStyle}" Grid.Column="1" Margin="75, -20, 20,20"/>
-        <ComboBox Name="ShapeTypeBox" Margin="80, 40, 80, 20" Grid.Column="1" SelectionChanged="ShapeTypeBox_SelectionChanged" >
-            <ComboBoxItem Content="Triangle" Style="{StaticResource comboBoxItemFontStyle}"/>
-            <ComboBoxItem Content="Right Triangle" Style="{StaticResource comboBoxItemFontStyle}"/>
-            <ComboBoxItem Content="Isosceles Triangle" Style="{StaticResource comboBoxItemFontStyle}" />
-            <ComboBoxItem Content="Equilateral Triangle" Style="{StaticResource comboBoxItemFontStyle}"/>
-            <ComboBoxItem Content="Quadrangle" Style="{StaticResource comboBoxItemFontStyle}"/>
-            <ComboBoxItem Content="Rectangle" Style="{StaticResource comboBoxItemFontStyle}" />
-            <ComboBoxItem Content="Trapezium" Style="{StaticResource comboBoxItemFontStyle}"/>
-            <ComboBoxItem Content="Hexagon" Style="{StaticResource comboBoxItemFontStyle}"/>
-        </ComboBox>
+        <Label Content="Select Shape to edit:" Style="{StaticResource labelFontStyle}" Grid.Column="1" Margin="75, -20, 20,20"/>
+        <ComboBox Name="ShapeTypeBox" Margin="80, 40, 80, 20" Grid.Column="1" SelectionChanged="ShapeTypeBox_SelectionChanged" />
         <Label Content="Point A:" Style="{StaticResource labelFontStyle}" Grid.Row="1" Margin="20,40,80,40"></Label>
         <TextBox x:Name="ATextBox" Grid.Row="1" Margin="80, 40, 80, 40" IsEnabled="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{StaticResource textBoxFontStyle}">
             <TextBox.Resources>
@@ -102,7 +93,7 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <Button x:Name="AddBtn" Content="Add" Margin="80, 60, 80, 10" Grid.Row="3" Style="{StaticResource buttonFontStyle}" Click="AddBtn_Click">
+        <Button x:Name="AddBtn" Content="Update" Margin="80, 60, 80, 10" Grid.Row="3" Style="{StaticResource buttonFontStyle}" Click="EditBtn_OnClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"></Setter>

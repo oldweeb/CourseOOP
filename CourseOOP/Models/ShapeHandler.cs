@@ -17,6 +17,7 @@ namespace CourseOOP.Models
     public class ShapeHandler
     {
         public List<IShape> Shapes { get; }
+        [JsonIgnore]
         public Dictionary<IShape, StringBuilder> ShapesHistory { get; }
 
         public IShape this[int index]

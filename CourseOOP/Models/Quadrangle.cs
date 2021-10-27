@@ -11,10 +11,10 @@ namespace CourseOOP.Models
 {
     public class Quadrangle : IShape
     {
-        protected Point _a = new(0, 0);
-        protected Point _b = new(0, 1);
-        protected Point _c = new(1, 1);
-        protected Point _d = new(1, 0);
+        protected Point _a;
+        protected Point _b;
+        protected Point _c;
+        protected Point _d;
 
         public Point A
         {
@@ -23,6 +23,7 @@ namespace CourseOOP.Models
         }
 
         public Point B
+
         {
             get => _b;
             set => _b = value;

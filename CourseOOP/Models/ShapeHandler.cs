@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Shapes;
 using CourseOOP.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -33,12 +29,18 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// Default ShapeHandler constructor
+        /// </summary>
         public ShapeHandler()
         {
             Shapes = new List<IShape>();
             ShapesHistory = new Dictionary<IShape, StringBuilder>();
         }
-
+        /// <summary>
+        /// Shape handler constructor with parameter.
+        /// </summary>
+        /// <param name="filePath">Path to file with shapes list.</param>
         public ShapeHandler(string filePath)
         {
             Shapes = new List<IShape>();
@@ -46,12 +48,23 @@ namespace CourseOOP.Models
             ReadFromFile(filePath);
         }
 
+        /// <summary>
+        /// ShapeHandler copy constructor.
+        /// </summary>
         public ShapeHandler(ShapeHandler handler)
         {
             Shapes = handler.Shapes.ToList();
             ShapesHistory = handler.ShapesHistory.ToDictionary(entry => entry.Key, entry => entry.Value);
         }
 
+        /// <summary>
+        /// Reads shapes list from file.
+        /// </summary>
+        /// <param name="filePath">Path to file with shapes list.</param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="TypeNotSupportedException"></exception>
         public void ReadFromFile(string filePath)
         {
             if (String.IsNullOrWhiteSpace(filePath))
@@ -114,7 +127,7 @@ namespace CourseOOP.Models
                             shape = Rectangle.Parse(line.Remove(0, shapeType.Length + 1));
                             break;
                         case "Trapezium":
-                            shape = Rectangle.Parse(line.Remove(0, shapeType.Length + 1));
+                            shape = Trapezium.Parse(line.Remove(0, shapeType.Length + 1));
                             break;
                         case "Hexagon":
                             shape = Hexagon.Parse(line.Remove(0, shapeType.Length + 1));
@@ -135,6 +148,11 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// Removes shapes at selected index.
+        /// </summary>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        /// <param name="index"></param>
         public void RemoveAt(int index)
         {
             if (index < 0 || index >= Shapes.Count)
@@ -145,6 +163,13 @@ namespace CourseOOP.Models
             Shapes.RemoveAt(index);
             ShapesHistory[shape].AppendLine($"{DateTime.Now} - shape was removed.");
         }
+
+        /// <summary>
+        /// Reads shapes list from JSON format.
+        /// </summary>
+        /// <exception cref="FormatException"></exception>
+        /// <exception cref="TypeNotSupportedException"></exception>
+        /// <param name="json"></param>
         public void ReadJson(string json)
         {
             JObject jObject = JObject.Parse(json);
@@ -254,6 +279,11 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// Adds shape to shapes list.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="shape"></param>
         public void AddShape([DisallowNull] IShape shape)
         {
             if (shape == null)
@@ -271,6 +301,12 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// Updates shapes at selected index with new value.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="shape"></param>
+        /// <param name="index"></param>
         public void UpdateShapeAt([DisallowNull] IShape shape, int index)
         {
             if (shape == null)
@@ -289,6 +325,13 @@ namespace CourseOOP.Models
             ShapesHistory.Add(shape, data);
             _ = data.AppendLine($"{DateTime.Now} - shape was edited.");
         }
+
+        /// <summary>
+        /// Writes shapes list to file
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        /// <param name="filePath">Path to file.</param>
         public void WriteToFile(string filePath)
         {
             if (String.IsNullOrWhiteSpace(filePath))
@@ -321,6 +364,12 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// Writes shapes history to file.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        /// <param name="filePath">Path to file.</param>
         public void WriteShapesHistoryToFile(string filePath)
         {
             if (String.IsNullOrWhiteSpace(filePath))

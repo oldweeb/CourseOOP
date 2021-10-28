@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CourseOOP.Views
 {
@@ -43,7 +31,7 @@ namespace CourseOOP.Views
             int index = ShapeBox.SelectedIndex;
             if (index < 0)
             {
-                _ = MessageBox.Show(_parent, "Select shape to remove first.", "Message.", MessageBoxButton.OK);
+                _ = MessageBox.Show(_parent, "Select shape to remove first.", "Message.", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             _parent.ShapeHandler.RemoveAt(index);

@@ -114,7 +114,8 @@ namespace CourseOOP.Views
                         this,
                         "Failed to read some shape from the file you have chosen. Check your file and try again.",
                         "Error.",
-                        MessageBoxButton.OK
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
                     );
                 }
                 catch (TypeNotSupportedException)
@@ -123,7 +124,8 @@ namespace CourseOOP.Views
                         this,
                         "The file you have chosen contains shape of type that is not currently supported.",
                         "Error.",
-                        MessageBoxButton.OK
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
                         );
                 }
                 catch (FormatException)
@@ -132,7 +134,8 @@ namespace CourseOOP.Views
                         this,
                         "Failed to read some shape from the file you have chosen. Check your file and try again.",
                         "Error.",
-                        MessageBoxButton.OK
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
                     );
                 }
                 catch (ArgumentException ex)
@@ -140,7 +143,8 @@ namespace CourseOOP.Views
                     _ = MessageBox.Show(this,
                         $"File contains invalid shape values. Message text: {ex.Message}",
                         "Error.",
-                        MessageBoxButton.OK
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
                     );
                 }
                 finally
@@ -158,7 +162,7 @@ namespace CourseOOP.Views
         {
             if (!ShapeHandler.Shapes.Any())
             {
-                _ = MessageBox.Show(this, "Nothing to save. Shapes list is empty.", "Message.", MessageBoxButton.OK);
+                _ = MessageBox.Show(this, "Nothing to save. Shapes list is empty.", "Message.", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             SaveFileDialog dialog = new()
@@ -188,7 +192,7 @@ namespace CourseOOP.Views
         {
             if (!ShapeHandler.Shapes.Any())
             {
-                _ = MessageBox.Show(this, "Nothing to edit yet.", "Message.", MessageBoxButton.OK);
+                _ = MessageBox.Show(this, "Nothing to edit yet.", "Message.", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             EditingPagesFrame.Content = new EditingPage(this);
@@ -202,7 +206,7 @@ namespace CourseOOP.Views
         {
             if (!ShapeHandler.Shapes.Any())
             {
-                _ = MessageBox.Show(this, "Nothing to remove yet.", "Message.", MessageBoxButton.OK);
+                _ = MessageBox.Show(this, "Nothing to remove yet.", "Message.", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -217,7 +221,7 @@ namespace CourseOOP.Views
         {
             if (!ShapeHandler.Shapes.Any())
             {
-                _ = MessageBox.Show(this, "Nothing to save. Shapes list is empty.", "Message.", MessageBoxButton.OK);
+                _ = MessageBox.Show(this, "Nothing to save. Shapes list is empty.", "Message.", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             SaveFileDialog dialog = new()

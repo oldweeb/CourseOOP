@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CourseOOP.Models
@@ -13,8 +11,15 @@ namespace CourseOOP.Models
         public override double GetArea() => AB * BC;
         public override double GetPerimeter() => (AB + BC) * 2;
 
+        /// <summary>
+        /// Default rectangle constructor
+        /// </summary>
         public Rectangle() : base() { }
 
+        /// <summary>
+        /// Rectangle constructor with parameters.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Rectangle(Point a, Point b, Point c, Point d) : base(a, b, c, d)
         {
             if (!IsRectangle(a, b, c, d))
@@ -22,6 +27,11 @@ namespace CourseOOP.Models
                 throw new ArgumentException("This is not a rectangle.");
             }
         }
+
+        /// <summary>
+        /// Rectangle copy constructor.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Rectangle(Rectangle rectangle) : base(rectangle) { }
 
         public static bool IsRectangle(Point a, Point b, Point c, Point d)
@@ -49,12 +59,12 @@ namespace CourseOOP.Models
 
         public new static Rectangle Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"-?\d+\.?\d*,\s*-?\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {

@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using CourseOOP.Models;
 using Rectangle = CourseOOP.Models.Rectangle;
 
@@ -44,15 +33,15 @@ namespace CourseOOP.Views
                 case <= 3:
                     if (!Regex.IsMatch(ATextBox.Text, regexPatternPoint))
                     {
-                        _ = MessageBox.Show(_parent, "Point A is invalid.", "Error.", MessageBoxButton.OK);
+                        _ = MessageBox.Show(_parent, "Point A is invalid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (!Regex.IsMatch(BTextBox.Text, regexPatternPoint))
                     {
-                        _ = MessageBox.Show(_parent, "Point B is invalid.", "Error.", MessageBoxButton.OK);
+                        _ = MessageBox.Show(_parent, "Point B is invalid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (!Regex.IsMatch(CTextBox.Text, regexPatternPoint))
                     {
-                        _ = MessageBox.Show(_parent, "Point C is invalid.", "Error.", MessageBoxButton.OK);
+                        _ = MessageBox.Show(_parent, "Point C is invalid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
@@ -61,7 +50,7 @@ namespace CourseOOP.Views
                         Point c = Point.Parse(Regex.Match(CTextBox.Text, @"(\d+(,|;)\s*\d+)").Value.Replace(";", ","));
                         if (!Triangle.IsTriangle(a, b, c))
                         {
-                            _ = MessageBox.Show(_parent, "This is not a triangle.", "Error.", MessageBoxButton.OK);
+                            _ = MessageBox.Show(_parent, "This is not a triangle.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         else
                         {
@@ -75,7 +64,7 @@ namespace CourseOOP.Views
                             {
                                 if (!RightTriangle.IsRightTriangle(a, b, c))
                                 {
-                                    _ = MessageBox.Show(_parent, "This is not a right triangle.", "Error.", MessageBoxButton.OK);
+                                    _ = MessageBox.Show(_parent, "This is not a right triangle.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                                     return;
                                 }
 
@@ -85,7 +74,7 @@ namespace CourseOOP.Views
                             {
                                 if (!IsoscelesTriangle.IsIsoscelesTriangle(a, b, c))
                                 {
-                                    _ = MessageBox.Show(_parent, "This is not an isosceles triangle.", "Error.", MessageBoxButton.OK);
+                                    _ = MessageBox.Show(_parent, "This is not an isosceles triangle.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                                     return;
                                 }
 
@@ -95,7 +84,7 @@ namespace CourseOOP.Views
                             {
                                 if (!EquilateralTriangle.IsEquilateralTriangle(a, b, c))
                                 {
-                                    _ = MessageBox.Show(_parent, "This is not an equilateral triangle.", "Error.", MessageBoxButton.OK);
+                                    _ = MessageBox.Show(_parent, "This is not an equilateral triangle.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                                     return;
                                 }
 
@@ -110,19 +99,19 @@ namespace CourseOOP.Views
                 case <= 6:
                     if (!Regex.IsMatch(ATextBox.Text, regexPatternPoint))
                     {
-                        _ = MessageBox.Show(_parent, "Point A is invalid.", "Error.", MessageBoxButton.OK);
+                        _ = MessageBox.Show(_parent, "Point A is invalid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (!Regex.IsMatch(BTextBox.Text, regexPatternPoint))
                     {
-                        _ = MessageBox.Show(_parent, "Point B is invalid.", "Error.", MessageBoxButton.OK);
+                        _ = MessageBox.Show(_parent, "Point B is invalid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (!Regex.IsMatch(CTextBox.Text, regexPatternPoint))
                     {
-                        _ = MessageBox.Show(_parent, "Point C is invalid.", "Error.", MessageBoxButton.OK);
+                        _ = MessageBox.Show(_parent, "Point C is invalid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (!Regex.IsMatch(DTextBox.Text, regexPatternPoint))
                     {
-                        _ = MessageBox.Show(_parent, "Point D is invalid.", "Error.", MessageBoxButton.OK);
+                        _ = MessageBox.Show(_parent, "Point D is invalid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
@@ -136,7 +125,7 @@ namespace CourseOOP.Views
                         {
                             if (!Quadrangle.IsQuadrangle(a, b, c, d))
                             {
-                                _ = MessageBox.Show(_parent, "This is not a quadrangle.", "Error.", MessageBoxButton.OK);
+                                _ = MessageBox.Show(_parent, "This is not a quadrangle.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
 
@@ -146,7 +135,7 @@ namespace CourseOOP.Views
                         {
                             if (!Rectangle.IsRectangle(a, b, c, d))
                             {
-                                _ = MessageBox.Show(_parent, "This is not a rectangle.", "Error.", MessageBoxButton.OK);
+                                _ = MessageBox.Show(_parent, "This is not a rectangle.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
 
@@ -156,7 +145,7 @@ namespace CourseOOP.Views
                         {
                             if (!Trapezium.IsTrapezium(a, b, c, d))
                             {
-                                _ = MessageBox.Show(_parent, "This is not a trapezium.", "Error.", MessageBoxButton.OK);
+                                _ = MessageBox.Show(_parent, "This is not a trapezium.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
 

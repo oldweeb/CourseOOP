@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace CourseOOP.Models
 {
@@ -30,13 +26,20 @@ namespace CourseOOP.Models
                 return (legs[0], legs[1]);
             }
         }
+        /// <summary>
+        /// Default RightTriangle constructor
+        /// Initializes points with values: A = (0, 0); B = (0, 2); C = (4, 0)
+        /// </summary>
         public RightTriangle()
         {
             _a = new Point(0, 0);
             _b = new Point(0, 2);
             _c = new Point(4, 0);
         }
-
+        /// <summary>
+        /// RightTriangle constructor with parameters
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public RightTriangle(Point a, Point b, Point c) : base(a, b, c)
         {
             if (!IsRightTriangle(a, b, c))
@@ -44,7 +47,10 @@ namespace CourseOOP.Models
                 throw new ArgumentException("This is not a right triangle.");
             }
         }
-
+        /// <summary>
+        /// RightTriangle copy  constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public RightTriangle(RightTriangle triangle) : base(triangle) { }
 
         
@@ -89,12 +95,12 @@ namespace CourseOOP.Models
         }
         public new static RightTriangle Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\s*\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {

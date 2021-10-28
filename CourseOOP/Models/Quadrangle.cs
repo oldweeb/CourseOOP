@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 
@@ -11,6 +9,7 @@ namespace CourseOOP.Models
 {
     public class Quadrangle : IShape
     {
+        // Quadrangle is stored as 4 points.
         protected Point _a;
         protected Point _b;
         protected Point _c;
@@ -39,11 +38,20 @@ namespace CourseOOP.Models
             get => _d;
             set => _d = value;
         }
+
+        // Calculating the length of AB side.
         public double AB => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
+
+        // Calculating the length of AD side.
         public double AD => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
+
+        // Calculating the length of BC side.
         public double BC => Math.Sqrt(Math.Pow(_c.X - _b.X, 2) + Math.Pow(_c.Y - _b.Y, 2));
+
+        // Calculating the length of CD side.
         public double CD => Math.Sqrt(Math.Pow(_d.X - _c.X, 2) + Math.Pow(_d.Y - _c.Y, 2));
 
+        // Calculating angle A (in degrees)
         public double AngleA
         {
             get
@@ -53,6 +61,8 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(ab, ad));
             }
         }
+
+        // Calculating angle B (in degrees)
         public double AngleB
         {
             get
@@ -62,6 +72,8 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(ba, bc));
             }
         }
+
+        // Calculating angle C (in degrees)
         public double AngleC
         {
             get
@@ -71,6 +83,8 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(cb, cd));
             }
         }
+
+        // Calculating angle D (in degrees)
         public double AngleD
         {
             get
@@ -80,10 +94,18 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(da, dc));
             }
         }
+
+        // AC diagonal as 2 points
         public (Point, Point) AC => (A, C);
+
+        // BD diagonal as 2 points
         public (Point, Point) BD => (B, D);
         [JsonProperty("Type")] public string ShapeType => this.GetType().Name;
 
+        /// <summary>
+        /// Default quadrangle constructor.
+        /// Initializes points with values: A = (0, 0); B = (0, 1); C = (1, 1); D = (1, 0)
+        /// </summary>
         public Quadrangle()
         {
             _a = new Point(0, 0);
@@ -92,6 +114,10 @@ namespace CourseOOP.Models
             _d = new Point(1, 0);
         }
 
+        /// <summary>
+        /// Quadrangle constructor with parameters.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Quadrangle(Point a, Point b, Point c, Point d)
         {
             if (!IsQuadrangle(a, b, c, d))
@@ -105,6 +131,10 @@ namespace CourseOOP.Models
             _d = new Point(d.X, d.Y);
         }
 
+        /// <summary>
+        /// Quadrangle copy constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Quadrangle(Quadrangle quadrangle) : this(quadrangle.A, quadrangle.B, quadrangle.C, quadrangle.D) { }
 
         public virtual double GetArea()
@@ -159,12 +189,12 @@ namespace CourseOOP.Models
 
         public static Quadrangle Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"-?\d+\.?\d*,\s*-?\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {

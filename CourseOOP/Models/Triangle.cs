@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 
@@ -11,6 +9,7 @@ namespace CourseOOP.Models
 {
     public class Triangle : IShape
     {
+        // Triangle is stored as 3 points.
         protected Point _a;
         protected Point _b;
         protected Point _c;
@@ -32,9 +31,13 @@ namespace CourseOOP.Models
             get => _c;
             set => _c = value;
         }
+        // Calculating the length of AB side.
         public double AB => Math.Sqrt(Math.Pow(_b.X - _a.X, 2) + Math.Pow(_b.Y - _a.Y, 2));
+        // Calculating the length of AC side.
         public double AC => Math.Sqrt(Math.Pow(_c.X - _a.X, 2) + Math.Pow(_c.Y - _a.Y, 2));
+        // Calculating the length of BC side.
         public double BC => Math.Sqrt(Math.Pow(_c.X - _b.X, 2) + Math.Pow(_c.Y - _b.Y, 2));
+        // Calculating angle A (in degrees)
         public double AngleA
         {
             get
@@ -45,6 +48,7 @@ namespace CourseOOP.Models
             }
         }
 
+        // Calculating angle B (in degrees)
         public double AngleB
         {
             get
@@ -54,6 +58,8 @@ namespace CourseOOP.Models
                 return Math.Abs(Vector.AngleBetween(ba, bc));
             }
         }
+
+        // Calculating angle C (in degrees)
         public double AngleC
         {
             get
@@ -65,12 +71,23 @@ namespace CourseOOP.Models
         }
 
         [JsonProperty("Type")] public string ShapeType => this.GetType().Name;
+
+        /// <summary>
+        /// Default Triangle constructor
+        /// </summary>
+        /// <returns>
+        /// Default Triangle object with A = (0, 0); B = (1, 1); C = (1, 0)
+        /// </returns>
         public Triangle()
         {
             _a = new Point(0, 0);
             _b = new Point(1, 1);
             _c = new Point(1, 0);
         }
+        /// <summary>
+        /// Triangle constructor with parameters
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Triangle(Point a, Point b, Point c)
         {
             if (!IsTriangle(a, b, c))
@@ -81,7 +98,10 @@ namespace CourseOOP.Models
             _b = new Point(b.X, b.Y);
             _c = new Point(c.X, c.Y);
         }
-
+        /// <summary>
+        /// Triangle copy constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Triangle(Triangle triangle) : this(triangle.A, triangle.B, triangle.C) { }
 
         
@@ -112,12 +132,12 @@ namespace CourseOOP.Models
 
         public static Triangle Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"-?\d+\.?\d*,\s*-?\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {

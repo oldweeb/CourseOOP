@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
 using Newtonsoft.Json;
 
 namespace CourseOOP.Models
@@ -28,16 +24,27 @@ namespace CourseOOP.Models
         }
         [JsonProperty("Type")] public string ShapeType => this.GetType().Name;
 
+        /// <summary>
+        /// Default Hexagon constructor.
+        /// Initializes SideLength with 1.0
+        /// </summary>
         public Hexagon()
         {
             _sideLength = 1.0;
         }
 
+        /// <summary>
+        /// Hexagon constructor with parameter.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Hexagon(double sideLength)
         {
             SideLength = sideLength;
         }
 
+        /// <summary>
+        /// Hexagon copy constructor.
+        /// </summary>
         public Hexagon(Hexagon hexagon)
         {
             this.SideLength = hexagon.SideLength;

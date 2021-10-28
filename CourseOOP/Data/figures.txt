@@ -1,50 +1,7 @@
-Shape: Hexagon Information: Side length: 5.00| S=64.95; P=30.00
-
-History: 10/25/2021 4:28:58 PM - shape was created.
-
-
-Shape: Triangle Information: A: (0,0); B: (1,1); C: (0,1)|∠A=45.00°; ∠B=45.00° ∠C=90.00°|AB=1.41; BC=1.00; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:28:58 PM - shape was created.
-
-
-Shape: RightTriangle Information: A: (0,0); B: (1,0); C: (0,1)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:28:58 PM - shape was created.
-
-
-Shape: Quadrangle Information: A: (0,0); B: (0,1); C: (1,1) D:(1,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
-
-History: 10/25/2021 4:28:58 PM - shape was created.
-
-
-Shape: Hexagon Information: Side length: 5.60| S=81.48; P=33.60
-
-History: 10/25/2021 4:29:06 PM - shape was created.
-
-
-Shape: Hexagon Information: Side length: 5.68| S=83.82; P=34.08
-
-History: 10/25/2021 4:29:19 PM - shape was created.
-
-
-Shape: Hexagon Information: Side length: 5.00| S=64.95; P=30.00
-
-History: 10/25/2021 4:29:25 PM - shape was created.
-
-
-Shape: Triangle Information: A: (0,0); B: (1,1); C: (0,1)|∠A=45.00°; ∠B=45.00° ∠C=90.00°|AB=1.41; BC=1.00; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:29:25 PM - shape was created.
-
-
-Shape: RightTriangle Information: A: (0,0); B: (1,0); C: (0,1)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:29:25 PM - shape was created.
-
-
-Shape: Quadrangle Information: A: (0,0); B: (0,1); C: (1,1) D:(1,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
-
-History: 10/25/2021 4:29:25 PM - shape was created.
-
-
+Triangle (3, 4) (7, 7) (5, 6)
+RightTriangle (0, 0) (0, 3) (4, 0)
+IsoscelesTriangle (0, -3) (-3, 0) (0, 3)
+Quadrangle (0, 0) (3, 0) (5, 2) (1, 2)
+Rectangle (1, 0) (1, 1) (0, 1) (0, 0)
+Trapezium (0, 0) (3, 0) (2, 2) (1, 2)
+Hexagon 5

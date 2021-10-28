@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CourseOOP.Models
 {
     public class IsoscelesTriangle : Triangle
     {
+        /// <summary>
+        /// Default IsoscelesTriangle.
+        /// Initializes points with values: A = (0, 0); B = (1.5, 1); C = (3, 0)
+        /// </summary>
         public IsoscelesTriangle()
         {
             _a = new Point(0, 0);
@@ -18,6 +18,10 @@ namespace CourseOOP.Models
             _c = new Point(3, 0);
         }
 
+        /// <summary>
+        /// IsoscelesTriangle constructor with parameters.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public IsoscelesTriangle(Point a, Point b, Point c) : base(a, b, c)
         {
             if (!IsIsoscelesTriangle(a, b, c))
@@ -26,6 +30,11 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// IsoscelesTriangle copy constructor.
+        /// </summary>
+        /// <param name="triangle"></param>
+        /// <exception cref="ArgumentException"></exception>
         public IsoscelesTriangle(IsoscelesTriangle triangle) : base(triangle) { }
         public override double GetArea()
         {
@@ -62,7 +71,7 @@ namespace CourseOOP.Models
 
         public static bool IsIsoscelesTriangle(Point a, Point b, Point c)
         {
-            if (IsTriangle(a, b, c))
+            if (!IsTriangle(a, b, c))
             {
                 return false;
             }
@@ -77,12 +86,12 @@ namespace CourseOOP.Models
         }
         public new static IsoscelesTriangle Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"-?\d+\.?\d*,\s*-?\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {

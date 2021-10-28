@@ -1,114 +1,77 @@
 Shape: Hexagon Information: Side length: 5.00| S=64.95; P=30.00
 
-History: 10/25/2021 4:28:58 PM - shape was created.
-10/25/2021 4:30:48 PM - shape was removed.
+History: 10/28/2021 5:59:17 PM - shape was created.
 
 
 Shape: Triangle Information: A: (0,0); B: (1,1); C: (0,1)|∠A=45.00°; ∠B=45.00° ∠C=90.00°|AB=1.41; BC=1.00; AC=1.00|S=0.50; P=3.41
 
-History: 10/25/2021 4:28:58 PM - shape was created.
-10/25/2021 4:30:58 PM - shape was removed.
+History: 10/28/2021 5:59:17 PM - shape was created.
 
 
 Shape: RightTriangle Information: A: (0,0); B: (1,0); C: (0,1)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
 
-History: 10/25/2021 4:28:58 PM - shape was created.
-10/25/2021 4:30:52 PM - shape was removed.
+History: 10/28/2021 5:59:17 PM - shape was created.
+
+
+Shape: IsoscelesTriangle Information: A: (0,5); B: (-7,0); C: (7,0)|∠A=108.92°; ∠B=35.54° ∠C=35.54°|AB=8.60; BC=14.00; AC=8.60|S=53.43; P=31.20
+
+History: 10/28/2021 5:59:17 PM - shape was created.
+
+
+Shape: Rectangle Information: A: (0,0); B: (3,0); C: (3,3) D:(0,3)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=3.00; BC=3.00; AD=3.00; CD=3.00|S=9.00; P=12.00
+
+History: 10/28/2021 5:59:17 PM - shape was created.
+
+
+Shape: Trapezium Information: A: (0,0); B: (6,0); C: (4,4) D:(2,4)|∠A=63.43°; ∠B=63.43° ∠C=116.57° ∠D=116.57°|AB=6.00; BC=4.47; AD=6.00; CD=2.00|S=16.00; P=18.47
+
+History: 10/28/2021 5:59:17 PM - shape was created.
 
 
 Shape: Quadrangle Information: A: (0,0); B: (0,1); C: (1,1) D:(1,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
 
-History: 10/25/2021 4:28:58 PM - shape was created.
-10/25/2021 4:31:02 PM - shape was removed.
+History: 10/28/2021 5:59:17 PM - shape was created.
 
 
-Shape: Hexagon Information: Side length: 5.60| S=81.48; P=33.60
+Shape: Triangle Information: A: (3,4); B: (7,7); C: (5,6)|∠A=8.13°; ∠B=10.30° ∠C=161.57°|AB=5.00; BC=2.24; AC=2.83|S=1.00; P=10.06
 
-History: 10/25/2021 4:29:06 PM - shape was created.
-
-
-Shape: Hexagon Information: Side length: 5.68| S=83.82; P=34.08
-
-History: 10/25/2021 4:29:19 PM - shape was created.
+History: 10/28/2021 5:59:58 PM - shape was created.
 
 
-Shape: Hexagon Information: Side length: 5.00| S=64.95; P=30.00
+Shape: RightTriangle Information: A: (0,0); B: (0,3); C: (4,0)|∠A=90.00°; ∠B=53.13° ∠C=36.87°|AB=3.00; BC=5.00; AC=4.00|S=6.00; P=12.00
 
-History: 10/25/2021 4:29:25 PM - shape was created.
-
-
-Shape: Triangle Information: A: (0,0); B: (1,1); C: (0,1)|∠A=45.00°; ∠B=45.00° ∠C=90.00°|AB=1.41; BC=1.00; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:29:25 PM - shape was created.
+History: 10/28/2021 5:59:58 PM - shape was created.
 
 
-Shape: RightTriangle Information: A: (0,0); B: (1,0); C: (0,1)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
+Shape: IsoscelesTriangle Information: A: (0,-3); B: (-3,0); C: (0,3)|∠A=45.00°; ∠B=90.00° ∠C=45.00°|AB=4.24; BC=4.24; AC=6.00|S=10.06; P=14.49
 
-History: 10/25/2021 4:29:25 PM - shape was created.
-
-
-Shape: Quadrangle Information: A: (0,0); B: (0,1); C: (1,1) D:(1,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
-
-History: 10/25/2021 4:29:25 PM - shape was created.
+History: 10/28/2021 5:59:58 PM - shape was created.
 
 
-Shape: Hexagon Information: Side length: 5.00| S=64.95; P=30.00
+Shape: Quadrangle Information: A: (0,0); B: (3,0); C: (5,2) D:(1,2)|∠A=63.43°; ∠B=135.00° ∠C=45.00° ∠D=116.57°|AB=3.00; BC=2.83; AD=3.00; CD=4.00|S=7.00; P=12.83
 
-History: 10/25/2021 4:30:20 PM - shape was created.
-
-
-Shape: Triangle Information: A: (0,0); B: (1,1); C: (0,1)|∠A=45.00°; ∠B=45.00° ∠C=90.00°|AB=1.41; BC=1.00; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:30:20 PM - shape was created.
+History: 10/28/2021 5:59:58 PM - shape was created.
 
 
-Shape: RightTriangle Information: A: (0,0); B: (1,0); C: (0,1)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
+Shape: Rectangle Information: A: (1,0); B: (1,1); C: (0,1) D:(0,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
 
-History: 10/25/2021 4:30:20 PM - shape was created.
-
-
-Shape: Quadrangle Information: A: (0,0); B: (0,1); C: (1,1) D:(1,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
-
-History: 10/25/2021 4:30:20 PM - shape was created.
+History: 10/28/2021 5:59:58 PM - shape was created.
 
 
-Shape: Hexagon Information: Side length: 5.00| S=64.95; P=30.00
+Shape: Trapezium Information: A: (0,0); B: (3,0); C: (2,2) D:(1,2)|∠A=63.43°; ∠B=63.43° ∠C=116.57° ∠D=116.57°|AB=3.00; BC=2.24; AD=3.00; CD=1.00|S=4.00; P=9.24
 
-History: 10/25/2021 4:30:25 PM - shape was created.
-
-
-Shape: Triangle Information: A: (0,0); B: (1,1); C: (0,1)|∠A=45.00°; ∠B=45.00° ∠C=90.00°|AB=1.41; BC=1.00; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:30:25 PM - shape was created.
+History: 10/28/2021 6:00:03 PM - shape was created.
 
 
-Shape: RightTriangle Information: A: (0,0); B: (1,0); C: (0,1)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
+Shape: Hexagon Information: Side length: 10.00| S=259.81; P=60.00
 
-History: 10/25/2021 4:30:25 PM - shape was created.
-
-
-Shape: Quadrangle Information: A: (0,0); B: (0,1); C: (1,1) D:(1,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
-
-History: 10/25/2021 4:30:25 PM - shape was created.
+History: 10/28/2021 6:00:03 PM - shape was created.
+10/28/2021 6:05:43 PM - shape was edited.
 
 
-Shape: Hexagon Information: Side length: 5.00| S=64.95; P=30.00
+Shape: Triangle Information: A: (0,0); B: (0,1); C: (1,0)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
 
-History: 10/25/2021 4:30:28 PM - shape was created.
-
-
-Shape: Triangle Information: A: (0,0); B: (1,1); C: (0,1)|∠A=45.00°; ∠B=45.00° ∠C=90.00°|AB=1.41; BC=1.00; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:30:28 PM - shape was created.
-
-
-Shape: RightTriangle Information: A: (0,0); B: (1,0); C: (0,1)|∠A=90.00°; ∠B=45.00° ∠C=45.00°|AB=1.00; BC=1.41; AC=1.00|S=0.50; P=3.41
-
-History: 10/25/2021 4:30:28 PM - shape was created.
-
-
-Shape: Quadrangle Information: A: (0,0); B: (0,1); C: (1,1) D:(1,0)|∠A=90.00°; ∠B=90.00° ∠C=90.00° ∠D=90.00°|AB=1.00; BC=1.00; AD=1.00; CD=1.00|S=1.00; P=4.00
-
-History: 10/25/2021 4:30:28 PM - shape was created.
+History: 10/28/2021 6:05:07 PM - shape was created.
+10/28/2021 6:06:07 PM - shape was removed.
 
 

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CourseOOP.Models
@@ -25,8 +22,15 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// Default Trapezium constructor
+        /// </summary>
         public Trapezium() : base() { }
 
+        /// <summary>
+        /// Trapezium constructor with parameters.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Trapezium(Point a, Point b, Point c, Point d) : base(a, b, c, d)
         {
             if (!IsTrapezium(a, b, c, d))
@@ -35,6 +39,10 @@ namespace CourseOOP.Models
             }
         }
 
+        /// <summary>
+        /// Trapezium copy constructor.
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Trapezium(Trapezium trapezium) : base (trapezium) { } 
         public override double GetArea()
         {
@@ -61,12 +69,12 @@ namespace CourseOOP.Models
 
         public new static Trapezium Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"-?\d+\.?\d*,\s*-?\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {

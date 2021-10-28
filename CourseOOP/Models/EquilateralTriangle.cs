@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CourseOOP.Models
 {
     public class EquilateralTriangle : Triangle
     {
+        /// <summary>
+        /// EquilateralTriangle default constructor.
+        /// Initializes points with values: A = (0, 0); B = (3, 0); C = (1.5, 2.5)
+        /// </summary>
         public EquilateralTriangle()
         {
             _a = new Point(0, 0);
             _b = new Point(3, 0);
             _c = new Point(1.5, 2.5);
         }
-
+        /// <summary>
+        /// EquilateralTriangle copy constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public EquilateralTriangle(EquilateralTriangle triangle) : base(triangle) { }
 
+        /// <summary>
+        /// EquilateralTriangle constructor with parameters
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public EquilateralTriangle(Point a, Point b, Point c) : base(a, b, c)
         {
             if (!IsEquilateralTriangle(a, b, c))
@@ -40,12 +48,12 @@ namespace CourseOOP.Models
         }
         public new static EquilateralTriangle Parse(string s)
         {
-            if (!Regex.IsMatch(s, @"^\(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\) \(\d+\.?\d*,\d+\.?\d*\)"))
+            if (!Regex.IsMatch(s, @"^\(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\) \(-?\d+\.?\d*,\s*-?\d+\.?\d*\)"))
             {
                 throw new FormatException("String does not suit the format.");
             }
 
-            MatchCollection mPoints = Regex.Matches(s, @"\d+\.?\d*,\d+\.?\d*");
+            MatchCollection mPoints = Regex.Matches(s, @"-?\d+\.?\d*,\s*-?\d+\.?\d*");
             List<Point> points = new();
             foreach (Match point in mPoints)
             {
